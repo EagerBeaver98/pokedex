@@ -1,14 +1,24 @@
 <template>
-  <Pokemon />
+  <Pokemon v-bind:state="$data.pokemon" v-bind:setPokemon="this.setPokemon"/>
 </template>
 
 <script>
 import Pokemon from "./components/Pokemon.vue";
 
+let pokemon = {};
+
 export default {
   name: "App",
   components: {
     Pokemon
+  },
+  data() {
+    return pokemon
+  },
+  methods: {
+    setPokemon(pokemon) {
+      this.state.pokemon = pokemon;
+    }
   }
 };
 </script>

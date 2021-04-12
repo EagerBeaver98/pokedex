@@ -1,13 +1,13 @@
 const axios = require("axios");
 
-const getPokemon = pokemon => {
+const getPokemon = async (pokemon, callback) => {
   axios
     .get("https://pokeapi.co/api/v2/pokemon/" + pokemon)
     .then(poke => {
-      return poke.data;
+      callback(poke.data);
     })
     .catch(err => {
-      return err;
+      throw new Error(err);
     });
 };
 
