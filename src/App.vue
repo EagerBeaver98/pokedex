@@ -5,21 +5,11 @@
 <script>
 import Pokemon from "./components/Pokemon.vue";
 
-let pokemon = {};
-
 export default {
   name: "App",
   components: {
     Pokemon
   },
-  data() {
-    return { pokemon }
-  },
-  methods: {
-    setPokemon(event, pokemon) {
-      this.$data.pokemon = pokemon;
-    }
-  }
 };
 </script>
 
