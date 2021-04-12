@@ -6,7 +6,7 @@
     </div>
     <form class="search-bar">
       <!-- <input v-model="text" placeholder="Enter Pokemon name or Pokedex ID"> -->
-      <button type="button" id="search-button" v-on:click="this.setPokemon('eevee')">Search</button>
+      <button type="button" id="search-button" v-on:click="this.setPokemon('1')">Search</button>
     </form>
   </div>
 </template>
