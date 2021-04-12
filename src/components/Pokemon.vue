@@ -1,10 +1,13 @@
 <template>
   <div class="pokemon">
-    <Sprite img="https://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/375px-133Eevee.png"/>
+    <Sprite v-if="$data.state.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
     <div id="name">
       {{$data.pokemon.name}}
     </div>
-    <button id="search-button" v-on:click="this.setPokemon('eevee')">Search</button>
+    <form class="search-bar">
+      <!-- <input v-model="text" placeholder="Enter Pokemon name or Pokedex ID"> -->
+      <button type="button" id="search-button" v-on:click="this.setPokemon('eevee')">Search</button>
+    </form>
   </div>
 </template>
 
@@ -14,13 +17,15 @@ import { getPokemon } from '../helpers/getPokemon';
 
 let pokemon = {};
 
+let state = { gotPokemon: false};
+
 export default {
   name: "Pokemon",
   components: {
     Sprite
   },
     data() {
-    return { pokemon }
+    return { state, pokemon }
   },
   methods: {
     logger(check) {
@@ -31,6 +36,7 @@ export default {
     },
     setPokemon(pokemon) {
       getPokemon(pokemon, this.setData)
+      this.$data.state.gotPokemon = true;
     }
   },
 };

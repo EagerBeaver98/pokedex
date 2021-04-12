@@ -1,5 +1,5 @@
 <template>
-  <Pokemon @setPokemon="setPokemon"/>
+  <Pokemon />
 </template>
 
 <script>
