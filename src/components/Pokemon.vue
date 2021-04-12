@@ -5,8 +5,8 @@
       {{$data.pokemon.name}}
     </div>
     <form class="search-bar">
-      <!-- <input v-model="text" placeholder="Enter Pokemon name or Pokedex ID"> -->
-      <button type="button" id="search-button" v-on:click="this.setPokemon('1')">Search</button>
+      <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
+      <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
     Sprite
   },
     data() {
-    return { state, pokemon }
+    return { state, pokemon, text: '' }
   },
   methods: {
     logger(check) {
@@ -52,7 +52,12 @@ export default {
   justify-content: space-around;
   flex-direction: column;
 }
+.search-bar {
+  display: flex;
+  flex-direction: column;
+}
 #search-button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 10px;
 }
 </style>
