@@ -2,7 +2,7 @@
   <div class="pokemon">
     <Sprite img="https://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/375px-133Eevee.png"/>
     <div id="name">
-      {{this.state}}
+      {{logger($data.pokemon)}}
     </div>
   </div>
 </template>
@@ -17,13 +17,15 @@ export default {
     Sprite
   },
   props: {
-    state: Object,
-    setPokemon: Function
+    method: { type: Function }
   },
   methods: {
     logger(check) {
-      console.log(check)
-    }
+      console.log(check);
+    },
+  },
+  mounted() {
+    this.$emit('setPokemon', 'eevee')
   }
 };
 </script>

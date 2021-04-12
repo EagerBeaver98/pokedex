@@ -1,5 +1,5 @@
 <template>
-  <Pokemon v-bind:state="$data.pokemon" v-bind:setPokemon="this.setPokemon"/>
+  <Pokemon @setPokemon="setPokemon"/>
 </template>
 
 <script>
@@ -13,11 +13,11 @@ export default {
     Pokemon
   },
   data() {
-    return pokemon
+    return { pokemon }
   },
   methods: {
-    setPokemon(pokemon) {
-      this.state.pokemon = pokemon;
+    setPokemon(event, pokemon) {
+      this.$data.pokemon = pokemon;
     }
   }
 };
