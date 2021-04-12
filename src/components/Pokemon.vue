@@ -26,7 +26,7 @@ export default {
   },
   mounted() {
     this.$emit('setPokemon', 'eevee')
-  }
+  },
 };
 </script>
 
