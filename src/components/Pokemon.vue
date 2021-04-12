@@ -1,10 +1,17 @@
 <template>
-  <div class="pokemon"></div>
+  <div class="pokemon">
+    <Sprite img="https://cdn.bulbagarden.net/upload/thumb/e/e2/133Eevee.png/375px-133Eevee.png"/>
+  </div>
 </template>
 
 <script>
+import Sprite from './Sprite.vue';
+
 export default {
-  name: "Pokemon"
+  name: "Pokemon",
+  components: {
+    Sprite
+  }
 };
 </script>
 
