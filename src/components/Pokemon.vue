@@ -1,6 +1,6 @@
 <template>
   <div class="pokemon">
-    <Sprite v-if="$data.state.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
+    <Sprite v-if="$data.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
     <div id="name">
       {{$data.pokemon.name}}
     </div>
@@ -17,15 +17,13 @@ import { getPokemon } from '../helpers/getPokemon';
 
 let pokemon = {};
 
-let state = { gotPokemon: false};
-
 export default {
   name: "Pokemon",
   components: {
     Sprite
   },
     data() {
-    return { state, pokemon, text: '' }
+    return { gotPokemon: false, pokemon, text: '' }
   },
   methods: {
     logger(check) {
@@ -36,7 +34,7 @@ export default {
     },
     setPokemon(pokemon) {
       getPokemon(pokemon, this.setData)
-      this.$data.state.gotPokemon = true;
+      this.$data.gotPokemon = true;
     }
   },
 };
@@ -51,13 +49,23 @@ export default {
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
+  padding-top: 20px;
 }
 .search-bar {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.textbox {
+  width: 220px;
+  border-radius: 25px;
+  text-align: center;
 }
 #search-button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   margin: 10px;
+  text-align: center;
+  border-radius: 25px;
+  width: 150px;
 }
 </style>
