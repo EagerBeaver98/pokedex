@@ -8,22 +8,23 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
+    <Description v-if="$data.gotPokemon" v-bind:entry="$data.pokemon.id" />
   </div>
 </template>
 
 <script>
 import Sprite from './Sprite.vue';
 import { getPokemon } from '../helpers/getPokemon';
-
-let pokemon = {};
+import Description from './Description.vue';
 
 export default {
   name: "Pokemon",
   components: {
-    Sprite
+    Sprite,
+    Description,
   },
     data() {
-    return { gotPokemon: false, pokemon, text: '' }
+    return { gotPokemon: false, pokemon: {}, text: '' }
   },
   methods: {
     logger(check) {
@@ -43,13 +44,14 @@ export default {
 <style>
 .pokemon {
   display: flex;
-  height: 300px;
+  height: 70%;
   border-radius: 25px;
   background-color: red;
   align-items: center;
   justify-content: space-around;
   flex-direction: column;
   padding-top: 20px;
+  width: 90%;
 }
 .search-bar {
   display: flex;

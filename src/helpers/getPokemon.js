@@ -5,7 +5,7 @@ const pokemonName = (name) => {
   return newName;
 }
 
-const getPokemon = async (pokemon, callback) => {
+const getPokemon = (pokemon, callback) => {
   axios
     .get("https://pokeapi.co/api/v2/pokemon/" + pokemon)
     .then((poke) => {
@@ -20,4 +20,18 @@ const getPokemon = async (pokemon, callback) => {
     });
 };
 
-module.exports = { getPokemon };
+const getPokedexFlavorText = (pokemon, version, callback) => {
+  axios.get("https://pokeapi.co/api/v2/pokemon-species/" + pokemon)
+  .then((poke) => {
+    for (let pokedex of poke.data.flavor_text_entries) {
+      if (pokedex.version.name === version && pokedex.language.name === 'en') {
+        callback(pokedex);
+      }
+    }
+  })
+  .catch((err) => {
+    throw new Error(err);
+  })
+}
+
+module.exports = { getPokemon, getPokedexFlavorText };
