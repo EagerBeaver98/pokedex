@@ -17,7 +17,7 @@
 
 <script>
 import Sprite from './Sprite.vue';
-import { getPokemon } from '../helpers/getPokemon';
+import { generations, getPokemon } from '../helpers/getPokemon';
 import Description from './Description.vue';
 import Generation from './Generation.vue';
 
@@ -29,7 +29,7 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', game: String }
+    return { gotPokemon: false, pokemon: {}, text: '', generations: generations }
   },
   methods: {
     logger(check) {
