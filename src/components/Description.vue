@@ -10,7 +10,7 @@ export default {
   name: "Description",
   props: {
     entry: Number,
-    generation: String
+    game: String
   },
   data() {
     return {flavorText: Object}

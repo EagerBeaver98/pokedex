@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-const pokemonName = (name) => {
+const nameFormat = (name) => {
   const newName = name[0].toUpperCase() + name.substring(1);
   return newName;
 }
@@ -9,7 +9,7 @@ const getPokemon = (pokemon, callback) => {
   axios
     .get("https://pokeapi.co/api/v2/pokemon/" + pokemon)
     .then((poke) => {
-      poke.data.name = pokemonName(poke.data.name);
+      poke.data.name = nameFormat(poke.data.name);
       return poke
     })
     .then(poke => {
@@ -34,8 +34,18 @@ const getPokedexFlavorText = (pokemon, version, callback) => {
   })
 };
 
-// const getGameList = (pokemon, callback) => {
+const getGameList = (callback) => {
+  axios.get("https://pokeapi.co/api/v2/version/")
+  .then((games) => {
+    callback(data.rows.map((game) => {
+      return nameFormat(game.name);
+    }))
+  })
+  .catch((err) => {
+    throw new Error(err)
+  });
+};
 
-// };
+getGameList(console.log)
 
-module.exports = { getPokemon, getPokedexFlavorText };
+module.exports = { getPokemon, getPokedexFlavorText, getGameList };

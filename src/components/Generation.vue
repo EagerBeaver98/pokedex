@@ -8,6 +8,12 @@
 <script>
 export default {
   name: 'Generation',
+  props: {
+    gen: Object
+  },
+  data() {
+    return {gameList: []}
+  },
 }
 </script>
 

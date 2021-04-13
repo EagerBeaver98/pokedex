@@ -9,9 +9,9 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" />
+    <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" :game="$data.game" />
   </div>
-  <Generation v-if="$data.gotPokemon"/>
+  <Generation v-if="$data.gotPokemon" :gen="$data.gen"/>
 </div>
 </template>
 
@@ -29,7 +29,7 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '' }
+    return { gotPokemon: false, pokemon: {}, text: '', game: String }
   },
   methods: {
     logger(check) {
