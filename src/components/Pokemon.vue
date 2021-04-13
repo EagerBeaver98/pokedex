@@ -8,7 +8,7 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description v-if="$data.gotPokemon" v-bind:entry="$data.pokemon.id" />
+    <Description :entry="$data.pokemon.id" :key="$data.pokemon.id" />
   </div>
 </template>
 
@@ -44,6 +44,7 @@ export default {
 <style>
 .pokemon {
   display: flex;
+  min-height: 200px;
   height: 70%;
   border-radius: 25px;
   background-color: red;
