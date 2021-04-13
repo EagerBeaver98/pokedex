@@ -1,9 +1,7 @@
 <template>
-  <div>
     <p class="flavor-text">
       {{flavorText.flavor_text}}
     </p>
-  </div>
 </template>
 
 <script>
@@ -32,6 +30,7 @@ export default {
 
 <style>
 .flavor-text {
+  display: inline-flex;
   background-color: white;
   padding: 5px;
   border-radius: 10px;

@@ -1,4 +1,5 @@
 <template>
+<div class="main">
   <div class="pokemon">
     <Sprite v-if="$data.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
     <div id="name">
@@ -10,18 +11,22 @@
     </form>
     <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" />
   </div>
+  <Generation />
+</div>
 </template>
 
 <script>
 import Sprite from './Sprite.vue';
 import { getPokemon } from '../helpers/getPokemon';
 import Description from './Description.vue';
+import Generation from './Generation.vue';
 
 export default {
   name: "Pokemon",
   components: {
     Sprite,
     Description,
+    Generation,
   },
     data() {
     return { gotPokemon: false, pokemon: {}, text: '' }
@@ -42,7 +47,7 @@ export default {
 </script>
 
 <style>
-.pokemon {
+.main {
   display: flex;
   min-height: 200px;
   height: 70%;
@@ -50,7 +55,6 @@ export default {
   background-color: red;
   align-items: center;
   justify-content: space-around;
-  flex-direction: column;
   padding-top: 20px;
   width: 90%;
 }
