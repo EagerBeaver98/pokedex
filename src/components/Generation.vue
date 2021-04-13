@@ -6,13 +6,14 @@
 </template>
 
 <script>
+import {generations} from "../helpers/getPokemon";
 export default {
   name: 'Generation',
   props: {
-    gen: Object
+    gen: String
   },
   data() {
-    return {gameList: []}
+    return {generations}
   },
 }
 </script>

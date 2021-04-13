@@ -9,7 +9,7 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" :game="$data.game" />
+    <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" :gen="$data.gen" />
   </div>
   <Generation v-if="$data.gotPokemon" :gen="$data.gen"/>
 </div>
@@ -17,7 +17,7 @@
 
 <script>
 import Sprite from './Sprite.vue';
-import { generations, getPokemon } from '../helpers/getPokemon';
+import { getPokemon } from '../helpers/getPokemon';
 import Description from './Description.vue';
 import Generation from './Generation.vue';
 
@@ -29,7 +29,7 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', generations: generations }
+    return { gotPokemon: false, pokemon: {}, text: '', gen: String}
   },
   methods: {
     logger(check) {
