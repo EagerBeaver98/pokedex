@@ -11,7 +11,7 @@
     </form>
     <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" />
   </div>
-  <Generation />
+  <Generation v-if="$data.gotPokemon"/>
 </div>
 </template>
 

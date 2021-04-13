@@ -9,7 +9,8 @@ import { getPokedexFlavorText } from '../helpers/getPokemon';
 export default {
   name: "Description",
   props: {
-    entry: Number
+    entry: Number,
+    generation: String
   },
   data() {
     return {flavorText: Object}

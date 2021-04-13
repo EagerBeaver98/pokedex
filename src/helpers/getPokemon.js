@@ -32,6 +32,10 @@ const getPokedexFlavorText = (pokemon, version, callback) => {
   .catch((err) => {
     throw new Error(err);
   })
-}
+};
+
+// const getGameList = (pokemon, callback) => {
+
+// };
 
 module.exports = { getPokemon, getPokedexFlavorText };
