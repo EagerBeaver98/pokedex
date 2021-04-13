@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>
+    <p class="flavor-text">
       {{flavorText.flavor_text}}
     </p>
   </div>
@@ -21,7 +21,7 @@ export default {
       this.$data.flavorText = text;
     },
     setData() {
-      getPokedexFlavorText(this.entry, 'blue', this.setFlavorText)
+      getPokedexFlavorText(this.entry, 'leafgreen', this.setFlavorText)
     }
   },
   mounted() {
@@ -31,5 +31,10 @@ export default {
 </script>
 
 <style>
+.flavor-text {
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+}
 
 </style>
