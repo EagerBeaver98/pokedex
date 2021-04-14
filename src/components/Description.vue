@@ -1,7 +1,13 @@
 <template>
+<div class="description-page">
+  <ul class="">
+    <li>
+    </li>
+  </ul>
     <p class="flavor-text">
       {{flavorText.flavor_text}}
     </p>
+</div>
 </template>
 
 <script>
@@ -9,7 +15,7 @@ import { getPokedexFlavorText } from '../helpers/getPokemon';
 export default {
   name: "Description",
   props: {
-    entry: Number,
+    pokemon: Object,
     game: String
   },
   data() {
@@ -20,7 +26,7 @@ export default {
       this.$data.flavorText = text;
     },
     setData() {
-      getPokedexFlavorText(this.entry, 'leafgreen', this.setFlavorText)
+      getPokedexFlavorText(this.pokemon.id, 'leafgreen', this.setFlavorText)
     }
   },
   mounted() {
@@ -30,6 +36,10 @@ export default {
 </script>
 
 <style>
+.description-page {
+  display: inline-flex;
+  flex-direction: column;
+}
 .flavor-text {
   display: inline-flex;
   background-color: white;

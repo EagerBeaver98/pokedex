@@ -1,6 +1,6 @@
 <template>
   <ul class="generation-list">
-    <li v-for="generation of $data.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
+    <li class="generation-list-item" v-for="generation of $data.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
       Generation {{generation.name}}
     </li>
   </ul>
@@ -23,7 +23,7 @@ export default {
 </script> 
 
 <style>
-ul {
+.generation-list {
   list-style-type: none;
   margin-right: 20%;
   display: flex;
@@ -32,7 +32,7 @@ ul {
   background-color: white;
   border-radius: 25px;
 }
-li {
+.generation-list-item {
   margin: 3px;
   border-width: 3px;
   border-style: solid;
@@ -40,7 +40,7 @@ li {
   padding: 6px;
   border-radius: 25px;
 }
-li:hover {
+.generation-list-item:hover {
   border-style: solid;
   border-width: 3px;
   border-color: black;
