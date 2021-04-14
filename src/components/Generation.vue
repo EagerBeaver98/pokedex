@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import {generations} from "../helpers/getPokemon";
+import {generations} from "../helpers/constants";
 export default {
   name: 'Generation',
   emits: ["change-gen"],
