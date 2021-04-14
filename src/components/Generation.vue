@@ -1,6 +1,6 @@
 <template>
   <ul class="generation-list">
-    <li v-for="generation of $data.generations" :key="generation.id"  >
+    <li v-for="generation of $data.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
       Generation {{generation.name}}
     </li>
   </ul>
@@ -10,14 +10,17 @@
 import {generations} from "../helpers/getPokemon";
 export default {
   name: 'Generation',
-  props: {
-    gen: String
+  emits: ["change-gen"],
+  methods: {
+    sendGen(gen) {
+      this.$emit('change-gen', gen);
+    }
   },
   data() {
-    return {generations}
+    return {generations} //TODO: Change method props pass to event emits
   },
 }
-</script>
+</script> 
 
 <style>
 ul {

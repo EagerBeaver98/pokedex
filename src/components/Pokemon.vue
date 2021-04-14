@@ -1,6 +1,6 @@
 <template>
 <div class="main">
-  <h1>Pokedex</h1>
+  <h1>Pok&eacute;dex</h1>
   <div class="body">
   <div class="pokemon">
     <Sprite v-if="$data.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
@@ -11,9 +11,9 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" :gen="$data.gen" />
+    <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" />
   </div>
-  <Generation v-if="$data.gotPokemon" :gen="$data.gen"/>
+  <Generation v-if="$data.gotPokemon" :gen="$data.gen" @change-gen="changeGen"/>
   </div>
 </div>
 </template>
@@ -32,7 +32,7 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', gen: String}
+    return { gotPokemon: false, pokemon: {}, text: '', gen: Number}
   },
   methods: {
     logger(check) {
@@ -44,6 +44,9 @@ export default {
     setPokemon(pokemon) {
       getPokemon(pokemon, this.setData)
       this.$data.gotPokemon = true;
+    },
+    changeGen(gen) {
+      this.$data.gen = gen;
     }
   },
 };
