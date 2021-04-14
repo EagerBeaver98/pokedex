@@ -1,11 +1,8 @@
 const axios = require("axios");
 
-const generations = [{name: "I", id: 1}, {name: "II", id: 2}, {name: "III", id: 3}, {name: "IV", id: 4}, {name: "V", id: 5}, {name: "VI", id: 6}, {name: "VII", id: 7}, {name: "VIII", id: 8}];
+import {nameFormat} from "./names"
 
-const nameFormat = (name) => {
-  const newName = name[0].toUpperCase() + name.substring(1);
-  return newName;
-}
+const generations = [{name: "I", id: 1}, {name: "II", id: 2}, {name: "III", id: 3}, {name: "IV", id: 4}, {name: "V", id: 5}, {name: "VI", id: 6}, {name: "VII", id: 7}, {name: "VIII", id: 8}];
 
 const getPokemon = (pokemon, callback) => {
   axios
@@ -36,4 +33,4 @@ const getPokedexFlavorText = (pokemon, version, callback) => {
   })
 };
 
-module.exports = { getPokemon, getPokedexFlavorText, generations };
+export { getPokemon, getPokedexFlavorText, generations };

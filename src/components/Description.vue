@@ -1,7 +1,7 @@
 <template>
 <div class="description-page">
-  <ul class="">
-    <li>
+  <ul class="game-list">
+    <li class="game-list-item">
     </li>
   </ul>
     <p class="flavor-text">
@@ -16,21 +16,22 @@ export default {
   name: "Description",
   props: {
     pokemon: Object,
-    game: String
+    genID: Number
   },
   data() {
-    return {flavorText: Object}
+    return {flavorText: Object, game: 'leafgreen'}
   },
   methods: {
     setFlavorText(text) {
       this.$data.flavorText = text;
     },
-    setData() {
-      getPokedexFlavorText(this.pokemon.id, 'leafgreen', this.setFlavorText)
-    }
+    fetchFlavorText() {
+      getPokedexFlavorText(this.pokemon.id, this.$data.game, this.setFlavorText)
+    },
+    
   },
   mounted() {
-    this.setData()
+    this.fetchFlavorText()
   }
 }
 </script>
