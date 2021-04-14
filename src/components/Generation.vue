@@ -17,7 +17,7 @@ export default {
     }
   },
   data() {
-    return {generations} //TODO: Change method props pass to event emits
+    return {generations}
   },
 }
 </script> 

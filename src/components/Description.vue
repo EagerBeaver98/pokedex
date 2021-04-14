@@ -19,7 +19,7 @@ export default {
     genID: Number
   },
   data() {
-    return {flavorText: Object, game: 'leafgreen'}
+    return {flavorText: Object, games: Array}
   },
   methods: {
     setFlavorText(text) {
@@ -28,7 +28,9 @@ export default {
     fetchFlavorText() {
       getPokedexFlavorText(this.pokemon.id, this.$data.game, this.setFlavorText)
     },
-    
+    getGames() {
+
+    }
   },
   mounted() {
     this.fetchFlavorText()

@@ -11,7 +11,7 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description class="description" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
+    <Description class="description" :pokemon="$data.pokemon" :key="$data.pokemon.id" :genID="$data.gen" />
   </div>
   <Generation v-if="$data.gotPokemon" :gen="$data.gen" @change-gen="changeGen"/>
   </div>
