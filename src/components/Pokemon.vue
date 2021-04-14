@@ -1,5 +1,7 @@
 <template>
 <div class="main">
+  <h1>Pokedex</h1>
+  <div class="body">
   <div class="pokemon">
     <Sprite v-if="$data.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
     <div id="name">
@@ -12,6 +14,7 @@
     <Description class="description" :entry="$data.pokemon.id" :key="$data.pokemon.id" :gen="$data.gen" />
   </div>
   <Generation v-if="$data.gotPokemon" :gen="$data.gen"/>
+  </div>
 </div>
 </template>
 
@@ -47,16 +50,24 @@ export default {
 </script>
 
 <style>
+h1 {
+  display: flex;
+  justify-content: center;
+}
 .main {
   display: flex;
   min-height: 200px;
   height: 70%;
   border-radius: 25px;
   background-color: red;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
   padding-top: 20px;
   width: 90%;
+}
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 .search-bar {
   display: flex;
