@@ -41,6 +41,7 @@ export default {
     },
     setPokemonData(pokemon) {
       this.$data.pokemon = pokemon;
+      console.log(pokemon)
     },
     setPokemon(pokemon) {
       getPokemon(pokemon, this.setPokemonData)
