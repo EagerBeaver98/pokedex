@@ -13,7 +13,7 @@
     </form>
     <Description class="description" :pokemon="$data.pokemon" :key="$data.pokemon.id" :genID="$data.currentGen" />
   </div>
-  <Generation v-if="$data.gotPokemon" :genID="$data.currentGen" @change-gen="changeGen"/>
+  <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" :genID="$data.currentGen" @change-gen="changeGen"/>
   </div>
 </div>
 </template>
@@ -23,7 +23,6 @@ import Sprite from './Sprite.vue';
 import { getPokemon } from '../helpers/getPokemon';
 import Description from './Description.vue';
 import Generation from './Generation.vue';
-const generations = require('../helpers/constants');
 
 export default {
   name: "Pokemon",
@@ -33,15 +32,11 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number, ...generations}
+    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number}
   },
   methods: {
-    logger(check) {
-      console.log(check);
-    },
     setPokemonData(pokemon) {
       this.$data.pokemon = pokemon;
-      console.log(pokemon)
     },
     setPokemon(pokemon) {
       getPokemon(pokemon, this.setPokemonData)

@@ -30,20 +30,6 @@ const getGames = async (generation, callback) => {
   });
 };
 
-// const getPokedexFlavorText = (pokemon, version, callback) => {
-//   axios.get("https://pokeapi.co/api/v2/pokemon-species/" + pokemon)
-//   .then((poke) => {
-//     for (let pokedex of poke.data.flavor_text_entries) {
-//       if (pokedex.version.name === version && pokedex.language.name === 'en') {
-//         callback(pokedex);
-//       }
-//     }
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-// };
-
 const getPokemon = (pokemon, callback) => {
   const pokemonData = axios.get("https://pokeapi.co/api/v2/pokemon/" + pokemon);
   const pokemonSpeciesData = axios.get("https://pokeapi.co/api/v2/pokemon-species/" + pokemon);
@@ -77,31 +63,8 @@ const getPokemon = (pokemon, callback) => {
     });
 };
 
-// const getGameList = (gen, callback) => {
-//   let results = [];
-//   axios.get("https://pokeapi.co/api/v2/generation/" + gen)
-//   .then( async ({ data }) => {
-//     for (let group of data.version_groups) {
-//       await axios.get(group.url)
-//       .then((response) => {
-//         response.data.versions.map((version) => results.push({...version, name: nameFormat(version.name)}))
-//       })
-//       .catch((err) => {
-//         console.log(err);
-//       })
-//     }
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-//   .finally(() => {
-//     callback(results);
-//   })
-// };
-
 // makeRequestsFromArray([1])
 // getGameList(1, console.log)
-getPokemon(200, console.log)
 // getPokemonSpecies(1, console.log)
 
 module.exports = { getPokemon };
