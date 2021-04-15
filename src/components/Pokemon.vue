@@ -11,9 +11,9 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description class="description" :pokemon="$data.pokemon" :key="$data.pokemon.id" :genID="$data.gen" />
+    <Description class="description" :pokemon="$data.pokemon" :key="$data.pokemon.id" :genID="$data.currentGen" />
   </div>
-  <Generation v-if="$data.gotPokemon" :gen="$data.gen" @change-gen="changeGen"/>
+  <Generation v-if="$data.gotPokemon" :genID="$data.currentGen" @change-gen="changeGen"/>
   </div>
 </div>
 </template>
@@ -23,6 +23,7 @@ import Sprite from './Sprite.vue';
 import { getPokemon } from '../helpers/getPokemon';
 import Description from './Description.vue';
 import Generation from './Generation.vue';
+const generations = require('../helpers/constants');
 
 export default {
   name: "Pokemon",
@@ -32,21 +33,22 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', gen: Number}
+    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number, ...generations}
   },
   methods: {
     logger(check) {
       console.log(check);
     },
-    setData(pokemon) {
+    setPokemonData(pokemon) {
       this.$data.pokemon = pokemon;
     },
     setPokemon(pokemon) {
-      getPokemon(pokemon, this.setData)
+      getPokemon(pokemon, this.setPokemonData)
       this.$data.gotPokemon = true;
+      
     },
     changeGen(gen) {
-      this.$data.gen = gen;
+      this.$data.currentGen = gen;
     }
   },
 };

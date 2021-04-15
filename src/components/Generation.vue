@@ -1,24 +1,24 @@
 <template>
   <ul class="generation-list">
-    <li class="generation-list-item" v-for="generation of $data.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
+    <li class="generation-list-item" v-for="generation of this.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
       Generation {{generation.name}}
     </li>
   </ul>
 </template>
 
 <script>
-import {generations} from "../helpers/constants";
 export default {
   name: 'Generation',
   emits: ["change-gen"],
+  props: {
+    generations: Array
+  },
   methods: {
     sendGen(gen) {
       this.$emit('change-gen', gen);
     }
   },
-  data() {
-    return {generations}
-  },
+
 }
 </script> 
 

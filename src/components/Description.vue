@@ -1,7 +1,8 @@
 <template>
 <div class="description-page">
   <ul class="game-list">
-    <li class="game-list-item">
+    <li class="game-list-item" v-for="game of $data.games" :key="game.id">
+      {{game.name}}
     </li>
   </ul>
     <p class="flavor-text">
@@ -11,7 +12,7 @@
 </template>
 
 <script>
-import { getPokedexFlavorText } from '../helpers/getPokemon';
+import { getPokedexFlavorText, getGameList } from '../helpers/getPokemon';
 export default {
   name: "Description",
   props: {
@@ -28,8 +29,11 @@ export default {
     fetchFlavorText() {
       getPokedexFlavorText(this.pokemon.id, this.$data.game, this.setFlavorText)
     },
+    setGames(games) {
+      this.$data.games = games
+    },
     getGames() {
-
+      getGameList(this.genID, this.setGames)
     }
   },
   mounted() {
