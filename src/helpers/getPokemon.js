@@ -1,6 +1,6 @@
 const axios = require("axios");
 
-import {nameFormat} from "./names"
+const {nameFormat} = require("./names")
 
 const getPokemon = (pokemon, callback) => {
   axios
@@ -34,36 +34,37 @@ const getPokedexFlavorText = (pokemon, version, callback) => {
 const getGames = (url, callback) => {
   axios.get(url)
   .then(({data}) => {
-    let results = [];
-    for (let version of data.version_groups) {
-      axios.get(version.url)
-      .then(({data}) => {
-        
-      })
-      .catch((err) => {
-        throw new Error(err);
-      })
+    for (let version of data.versions) {
+      callback(version);
     }
   })
   .catch((err) => {
-    throw new Error(err);
+    console.log(err);
   })
-};
+  // .finally(() => {
+  //   callback(results);
+  // })
+}
 
 const getGameList = (gen, callback) => {
-  axios.get("https://pokeapi.co/api/v2/generation/")
+  let gameList = [];
+  axios.get("https://pokeapi.co/api/v2/generation/" + gen)
   .then(({ data }) => {
-    for (let [key, generation] of data.results.entries()) {
-      if (key + 1 === gen) {
-        getGames(generation.url, callback);
-      }
+    for (let group of data.version_groups) {
+      getGames(group.url, (games) => {
+        gameList.push(games);
+      });
     }
   })
   .catch((err) => {
     throw new Error(err);
   })
+  .finally(() => {
+    callback(gameList);
+  })
 };
 
-getGameList()
+getGameList(1, console.log)
+// getGames('https://pokeapi.co/api/v2/version-group/1', console.log)
 
-export { getPokemon, getPokedexFlavorText };
+// export { getPokemon, getPokedexFlavorText };

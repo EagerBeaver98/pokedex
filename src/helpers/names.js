@@ -7,4 +7,4 @@ const nameFormat = (name) => {
 
 // };
 
-export { nameFormat }
+module.exports = {nameFormat}
