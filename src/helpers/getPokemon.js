@@ -31,40 +31,26 @@ const getPokedexFlavorText = (pokemon, version, callback) => {
   })
 };
 
-const getGames = (url, callback) => {
-  axios.get(url)
-  .then(({data}) => {
-    for (let version of data.versions) {
-      callback(version);
-    }
-  })
-  .catch((err) => {
-    console.log(err);
-  })
-  // .finally(() => {
-  //   callback(results);
-  // })
-}
-
 const getGameList = (gen, callback) => {
-  let gameList = [];
+  let results = [];
   axios.get("https://pokeapi.co/api/v2/generation/" + gen)
-  .then(({ data }) => {
+  .then( async ({ data }) => {
     for (let group of data.version_groups) {
-      getGames(group.url, (games) => {
-        gameList.push(games);
-      });
+      await axios.get(group.url)
+      .then((response) => {
+        response.data.versions.map((version) => results.push(version))
+      })
+      .catch((err) => {
+        throw new Error(err);
+      })
     }
   })
   .catch((err) => {
     throw new Error(err);
   })
   .finally(() => {
-    callback(gameList);
+    callback(results);
   })
 };
 
-getGameList(1, console.log)
-// getGames('https://pokeapi.co/api/v2/version-group/1', console.log)
-
-// export { getPokemon, getPokedexFlavorText };
+module.exports = { getPokemon, getPokedexFlavorText, getGameList };
