@@ -63,7 +63,7 @@ const getPokemon = (pokemon, callback) => {
             fullVersion[x] = {...fullVersion[x], games};
           })
         }
-        combinedResponses = {...combinedResponses.species, generations: fullVersion};
+        combinedResponses = {...combinedResponses, generations: fullVersion};
         }))
         .then(() => {
           callback(combinedResponses)
@@ -101,7 +101,7 @@ const getPokemon = (pokemon, callback) => {
 
 // makeRequestsFromArray([1])
 // getGameList(1, console.log)
-getPokemon(2, console.log)
+getPokemon(200, console.log)
 // getPokemonSpecies(1, console.log)
 
 module.exports = { getPokemon };
