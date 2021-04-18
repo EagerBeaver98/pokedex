@@ -6,39 +6,17 @@
     </li>
   </ul>
     <p class="flavor-text">
-      {{flavorText.flavor_text}}
+      FlavorText
     </p>
 </div>
 </template>
 
 <script>
-import { getPokedexFlavorText, getGameList } from '../helpers/getPokemon';
 export default {
   name: "Description",
   props: {
     pokemon: Object,
-    genID: Number
   },
-  data() {
-    return {flavorText: Object, games: Array}
-  },
-  methods: {
-    setFlavorText(text) {
-      this.$data.flavorText = text;
-    },
-    fetchFlavorText() {
-      getPokedexFlavorText(this.pokemon.id, this.$data.game, this.setFlavorText)
-    },
-    setGames(games) {
-      this.$data.games = games
-    },
-    getGames() {
-      getGameList(this.genID, this.setGames)
-    }
-  },
-  mounted() {
-    this.fetchFlavorText()
-  }
 }
 </script>
 

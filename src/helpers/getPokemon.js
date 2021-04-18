@@ -67,4 +67,4 @@ const getPokemon = (pokemon, callback) => {
 // getGameList(1, console.log)
 // getPokemonSpecies(1, console.log)
 
-module.exports = { getPokemon };
+export default getPokemon ;

@@ -3,7 +3,7 @@
   <h1>Pok&eacute;dex</h1>
   <div class="body">
   <div class="pokemon">
-    <Sprite v-if="$data.gotPokemon" v-bind:img="$data.pokemon.sprites.front_default" />
+    <Sprite v-if="$data.gotPokemon" :img="$data.pokemon.sprites.front_default" />
     <div id="name">
       {{$data.pokemon.name}}
     </div>
@@ -11,16 +11,16 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
     </form>
-    <Description class="description" :pokemon="$data.pokemon" :key="$data.pokemon.id" :genID="$data.currentGen" />
+    <Description class="description" v-if="$data.gotPokemon" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
   </div>
-  <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" :genID="$data.currentGen" @change-gen="changeGen"/>
+  <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" @change-gen="changeGen"/>
   </div>
 </div>
 </template>
 
 <script>
 import Sprite from './Sprite.vue';
-import { getPokemon } from '../helpers/getPokemon';
+import getPokemon from '../helpers/getPokemon';
 import Description from './Description.vue';
 import Generation from './Generation.vue';
 
@@ -40,16 +40,18 @@ export default {
     },
     setPokemonData(pokemon) {
       this.$data.pokemon = pokemon;
-    },
-    setPokemon(pokemon) {
-      getPokemon(pokemon, this.setPokemonData)
       this.$data.gotPokemon = true;
-      
+    },
+    setPokemon (pokemon) {
+      getPokemon(pokemon, this.setPokemonData)      
     },
     changeGen(gen) {
       this.$data.currentGen = gen;
     }
   },
+  updated() {
+    console.log(this.pokemon)
+  }
 };
 </script>
 
