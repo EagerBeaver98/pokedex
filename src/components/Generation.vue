@@ -20,7 +20,7 @@ export default {
     }, 
     genLang(generation) {
       return generation.find(language => language.language.name === "en");
-    }
+    },
   },
 
 }

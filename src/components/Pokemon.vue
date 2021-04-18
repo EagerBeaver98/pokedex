@@ -9,7 +9,7 @@
     </div>
     <form class="search-bar">
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
-      <input type="button" value="Search" id="search-button" v-on:click="this.setPokemon($data.text)">
+      <input type="button" value="Search" id="search-button" @click="this.setPokemon($data.text)">
     </form>
     <Description class="description" v-if="$data.gotPokemon" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
   </div>
@@ -38,20 +38,25 @@ export default {
     logger(log) {
       console.log(log)
     },
+    newGenerationArray() {
+      this.$data.pokemon.generations = this.$data.pokemon.generations.filter(x => x.id >= this.$data.currentGen)
+    },
     setPokemonData(pokemon) {
       this.$data.pokemon = pokemon;
       this.$data.gotPokemon = true;
+      this.$data.currentGen = this.$data.pokemon.generations.find((x) => x.name === this.$data.pokemon.species.generation.name).id
+      this.newGenerationArray();
     },
     setPokemon (pokemon) {
       getPokemon(pokemon, this.setPokemonData)      
     },
     changeGen(gen) {
       this.$data.currentGen = gen;
-    }
+    },
   },
-  // updated() {
-  //   console.log(this.pokemon)
-  // }
+  updated() {
+    console.log(this.$data)
+  },
 };
 </script>
 

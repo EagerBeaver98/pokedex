@@ -2,7 +2,7 @@ const axios = require("axios");
 
 const {nameFormat} = require("./names")
 
-const makeRequestsFromObject = (versions) => {
+const makeGenerationsRequestsFromObject = (versions) => {
   let finalRequests = [];
   let index = 8 - Object.keys(versions).length;
   for (let x = 8; x > index; x--) {
@@ -38,7 +38,7 @@ const getPokemon = (pokemon, callback) => {
   axios.all([pokemonData, pokemonSpeciesData])
     .then(axios.spread( async (...responses) => {
       combinedResponses = {...responses[0].data, species: responses[1].data, name: nameFormat(responses[0].data.name)};
-      const versions = makeRequestsFromObject(responses[0].data.sprites.versions)
+      const versions = makeGenerationsRequestsFromObject(responses[0].data.sprites.versions)
       await axios.all(versions).then(axios.spread( async (...genResponses) => {
         for (let response of genResponses) {
           fullVersion.push(response.data);
