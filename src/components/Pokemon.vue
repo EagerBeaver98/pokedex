@@ -49,9 +49,9 @@ export default {
       this.$data.currentGen = gen;
     }
   },
-  updated() {
-    console.log(this.pokemon)
-  }
+  // updated() {
+  //   console.log(this.pokemon)
+  // }
 };
 </script>
 

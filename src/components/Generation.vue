@@ -33,6 +33,8 @@ export default {
   flex-direction: column-reverse;
   background-color: white;
   border-radius: 25px;
+  margin: 0%;
+  margin-bottom: auto;
 }
 .generation-list-item {
   margin: 3px;
