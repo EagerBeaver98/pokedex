@@ -35,6 +35,9 @@ export default {
     return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number}
   },
   methods: {
+    logger(log) {
+      console.log(log)
+    },
     setPokemonData(pokemon) {
       this.$data.pokemon = pokemon;
     },

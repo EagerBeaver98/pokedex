@@ -1,7 +1,7 @@
 <template>
   <ul class="generation-list">
     <li class="generation-list-item" v-for="generation of this.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
-      Generation {{generation.name}}
+      {{this.genLang(generation.names).name}}
     </li>
   </ul>
 </template>
@@ -16,6 +16,9 @@ export default {
   methods: {
     sendGen(gen) {
       this.$emit('change-gen', gen);
+    }, 
+    genLang(generation) {
+      return generation.find(language => language.language.name === "en");
     }
   },
 
@@ -25,10 +28,9 @@ export default {
 <style>
 .generation-list {
   list-style-type: none;
-  margin-right: 20%;
   display: flex;
   padding: 0%;
-  flex-direction: column;
+  flex-direction: column-reverse;
   background-color: white;
   border-radius: 25px;
 }
