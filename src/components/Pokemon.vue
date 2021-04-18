@@ -13,7 +13,7 @@
     </form>
     <Description class="description" v-if="$data.gotPokemon" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
   </div>
-  <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" @change-gen="changeGen"/>
+  <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" :currentGen="$data.currentGen" @change-gen="changeGen"/>
   </div>
 </div>
 </template>

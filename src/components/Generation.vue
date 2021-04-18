@@ -1,6 +1,6 @@
 <template>
   <ul class="generation-list">
-    <li class="generation-list-item" v-for="generation of this.generations" :key="generation.id" @click="this.sendGen(generation.id)" >
+    <li class="generation-list-item" v-for="generation of this.generations" :class="{'active': (generation.id === this.currentGen)}" :key="generation.id" @click="this.sendGen(generation.id)" >
       {{this.genLang(generation.names).name}}
     </li>
   </ul>
@@ -11,7 +11,8 @@ export default {
   name: 'Generation',
   emits: ["change-gen"],
   props: {
-    generations: Array
+    generations: Array,
+    currentGen: Number
   },
   methods: {
     sendGen(gen) {
@@ -45,6 +46,11 @@ export default {
   border-radius: 25px;
 }
 .generation-list-item:hover {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
+.active {
   border-style: solid;
   border-width: 3px;
   border-color: black;
