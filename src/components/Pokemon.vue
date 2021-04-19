@@ -7,11 +7,11 @@
     <div id="name">
       {{$data.pokemon.name}}
     </div>
-    <form class="search-bar">
+    <form @submit.prevent="setPokemon(text)" class="search-bar">
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
-      <input type="button" value="Search" id="search-button" @click="this.setPokemon($data.text)">
+      <input type="submit" value="Search" id="search-button">
     </form>
-    <Description class="description" v-if="$data.gotPokemon" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
+    <Description class="description" v-if="$data.gotPokemon" :currentGen="$data.currentGen" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
   </div>
   <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" :currentGen="$data.currentGen" @change-gen="changeGen"/>
   </div>
