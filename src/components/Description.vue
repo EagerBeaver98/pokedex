@@ -44,5 +44,8 @@ export default {
   padding: 5px;
   border-radius: 10px;
 }
+.game-list {
+  flex-direction: row;
+}
 
 </style>

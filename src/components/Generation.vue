@@ -33,9 +33,4 @@ export default {
   margin: 0%;
   margin-bottom: auto;
 }
-.active {
-  border-style: solid;
-  border-width: 3px;
-  border-color: black;
-}
 </style>

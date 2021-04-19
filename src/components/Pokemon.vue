@@ -116,4 +116,9 @@ li:hover {
   border-width: 3px;
   border-color: black;
 }
+.active {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
+}
 </style>
