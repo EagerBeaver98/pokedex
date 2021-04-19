@@ -12,6 +12,9 @@
 </template>
 
 <script>
+
+const {nameFormat} = require('../helpers/names')
+
 export default {
   name: "Description",
   props: {
@@ -24,11 +27,18 @@ export default {
       selectedGame: Number,
     }
   },
+  methods: {
+    gameList() {
+      this.$data.genGameList = this.pokemon.generations.find(x => x.id === this.currentGen).games.map((x) => {
+      x.name = nameFormat(x.name)
+    })
+    },
+  },
   mounted() {
-    this.$data.genGameList = this.pokemon.generations.find(x => x.id === this.currentGen).games
+    this.gameList();
   },
   updated() {
-    this.$data.genGameList = this.pokemon.generations.find(x => x.id === this.currentGen).games
+    this.gameList();
   },
 }
 </script>
@@ -37,15 +47,19 @@ export default {
 .description-page {
   display: inline-flex;
   flex-direction: column;
+  text-align: center;
 }
 .flavor-text {
   display: inline-flex;
   background-color: white;
   padding: 5px;
   border-radius: 10px;
+  text-align: center;
 }
 .game-list {
   flex-direction: row;
+  padding: 0%;
+  width: fit-content;
 }
 
 </style>

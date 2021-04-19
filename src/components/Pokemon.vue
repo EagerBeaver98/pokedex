@@ -95,7 +95,7 @@ h1 {
   width: 150px;
 }
 .description {
-  max-width: 40%;
+  max-width: 80%;
 }
 ul {
   list-style-type: none;

@@ -32,5 +32,6 @@ export default {
   flex-direction: column-reverse;
   margin: 0%;
   margin-bottom: auto;
+  padding-top: 1px;
 }
 </style>
