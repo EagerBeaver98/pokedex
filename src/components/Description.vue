@@ -16,6 +16,7 @@ export default {
   name: "Description",
   props: {
     pokemon: Object,
+    currentGen: Number,
   },
 }
 </script>

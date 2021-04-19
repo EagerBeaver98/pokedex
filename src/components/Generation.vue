@@ -1,7 +1,7 @@
 <template>
   <ul class="generation-list">
-    <li class="generation-list-item" v-for="generation of this.generations" :class="{'active': (generation.id === this.currentGen)}" :key="generation.id" @click="this.sendGen(generation.id)" >
-      {{this.genLang(generation.names).name}}
+    <li class="generation-list-item" v-for="generation of this.generations" :class="{'active': (generation.id === this.currentGen)}" :key="generation.id" @click="sendGen(generation.id)" >
+      {{genLang(generation.names).name}}
     </li>
   </ul>
 </template>
