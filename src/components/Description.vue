@@ -1,7 +1,7 @@
 <template>
 <div class="description-page">
   <ul class="game-list">
-    <li class="game-list-item" v-for="game of $data.games" :key="game.id">
+    <li class="game-list-item" v-for="game of $data.genGameList" :key="game.name">
       {{game.name}}
     </li>
   </ul>
@@ -17,6 +17,18 @@ export default {
   props: {
     pokemon: Object,
     currentGen: Number,
+  },
+  data() {
+    return {
+      genGameList: [],
+      selectedGame: Number,
+    }
+  },
+  mounted() {
+    this.$data.genGameList = this.pokemon.generations.find(x => x.id === this.currentGen).games
+  },
+  updated() {
+    this.$data.genGameList = this.pokemon.generations.find(x => x.id === this.currentGen).games
   },
 }
 </script>

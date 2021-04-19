@@ -35,9 +35,6 @@ export default {
     return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number}
   },
   methods: {
-    logger(log) {
-      console.log(log)
-    },
     newGenerationArray() {
       this.$data.pokemon.generations = this.$data.pokemon.generations.filter(x => x.id >= this.$data.currentGen)
     },
@@ -55,7 +52,7 @@ export default {
     },
   },
   updated() {
-    console.log(this.$data)
+    console.log(this.$data.pokemon)
   },
 };
 </script>
@@ -99,5 +96,24 @@ h1 {
 }
 .description {
   max-width: 40%;
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  background-color: white;
+  border-radius: 25px;
+}
+li {
+  margin: 3px;
+  border-width: 3px;
+  border-style: solid;
+  border-color: transparent;
+  padding: 6px;
+  border-radius: 25px;
+}
+li:hover {
+  border-style: solid;
+  border-width: 3px;
+  border-color: black;
 }
 </style>
