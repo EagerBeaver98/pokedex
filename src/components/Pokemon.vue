@@ -11,7 +11,7 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="submit" value="Search" id="search-button">
     </form>
-    <Description class="description" v-if="$data.gotPokemon" :currentGen="$data.currentGen" :pokemon="$data.pokemon" :key="$data.pokemon.id" />
+    <Description class="description" v-if="$data.gotPokemon" :genGameList="this.gameList()" />
   </div>
   <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" :currentGen="$data.currentGen" @change-gen="changeGen"/>
   </div>
@@ -32,7 +32,7 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number}
+    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number, currentGame: Number}
   },
   methods: {
     newGenerationArray() {
@@ -50,9 +50,12 @@ export default {
     changeGen(gen) {
       this.$data.currentGen = gen;
     },
+    gameList() {
+      return this.pokemon.generations.find(x => x.id === this.currentGen).games;
+    },
   },
   updated() {
-    console.log(this.$data.pokemon)
+    console.log(this.$data)
   },
 };
 </script>
@@ -95,7 +98,7 @@ h1 {
   width: 150px;
 }
 .description {
-  max-width: 80%;
+  max-width: 90%;
 }
 ul {
   list-style-type: none;
