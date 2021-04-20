@@ -43,6 +43,7 @@ export default {
   padding: 10px;
   border-radius: 10px;
   text-align: center;
+  max-width: 50rem;
 }
 .game-list {
   flex-direction: row;

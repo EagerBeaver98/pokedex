@@ -55,7 +55,12 @@ export default {
       this.$data.currentGame = game;
     },
     gameList() {
-      return this.pokemon.generations.find(x => x.id === this.currentGen).games;
+      let generation = this.pokemon.generations.find(x => x.id === this.currentGen);
+      if (generation.id !== 3) {
+        return generation.games;
+      } else {
+        return generation.games.slice(0, -2);
+      }
     },
     gameDescription() {
       return this.pokemon.species.flavor_text_entries.find(x => x.version.name === this.currentGame).flavor_text
