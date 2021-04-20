@@ -11,7 +11,7 @@
       <input v-model="text" class="textbox" placeholder="Enter Pokemon name or Pokedex ID">
       <input type="submit" value="Search" id="search-button">
     </form>
-    <Description class="description" v-if="$data.gotPokemon" :genGameList="this.gameList()" />
+    <Description class="description" v-if="$data.gotPokemon" :gameDescription="gameDescription()" @change-game="changeGame" :genGameList="this.gameList()" />
   </div>
   <Generation v-if="$data.gotPokemon" :generations="$data.pokemon.generations" :currentGen="$data.currentGen" @change-gen="changeGen"/>
   </div>
@@ -32,7 +32,7 @@ export default {
     Generation,
   },
     data() {
-    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number, currentGame: Number}
+    return { gotPokemon: false, pokemon: {}, text: '', currentGen: Number, currentGame: String}
   },
   methods: {
     newGenerationArray() {
@@ -42,6 +42,7 @@ export default {
       this.$data.pokemon = pokemon;
       this.$data.gotPokemon = true;
       this.$data.currentGen = this.$data.pokemon.generations.find((x) => x.name === this.$data.pokemon.species.generation.name).id
+      this.$data.currentGame = this.gameList()[0].name
       this.newGenerationArray();
     },
     setPokemon (pokemon) {
@@ -50,8 +51,14 @@ export default {
     changeGen(gen) {
       this.$data.currentGen = gen;
     },
+    changeGame(game) {
+      this.$data.currentGame = game;
+    },
     gameList() {
       return this.pokemon.generations.find(x => x.id === this.currentGen).games;
+    },
+    gameDescription() {
+      return this.pokemon.species.flavor_text_entries.find(x => x.version.name === this.currentGame).flavor_text
     },
   },
   updated() {
@@ -98,7 +105,7 @@ h1 {
   width: 150px;
 }
 .description {
-  max-width: 90%;
+  width: 100%;
 }
 ul {
   list-style-type: none;

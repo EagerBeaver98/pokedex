@@ -1,12 +1,12 @@
 <template>
 <div class="description-page">
   <ul class="game-list">
-    <li class="game-list-item" v-for="game of this.genGameList" :key="game.id">
+    <li class="game-list-item" v-for="game of this.genGameList" :class="{'active': (game.name === this.selectedGame)}" :key="game.id" @click="this.$emit('change-game', game.name)">
       {{this.gameName(game.name)}}
     </li>
   </ul>
     <p class="flavor-text">
-      FlavorText
+      {{this.gameDescription}}
     </p>
 </div>
 </template>
@@ -17,9 +17,10 @@ const {nameFormat} = require('../helpers/names')
 
 export default {
   name: "Description",
+  emits: ['change-game'],
   props: {
     genGameList: Array,
-    selectedGame: Number,
+    selectedGame: String,
     gameDescription: String,
   },
   methods: {
@@ -38,19 +39,19 @@ export default {
   justify-content: center;
 }
 .flavor-text {
-  display: inline-flex;
   background-color: white;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   text-align: center;
 }
 .game-list {
   flex-direction: row;
   padding: 0%;
-  width: fit-content;
+  width: 100%;
 }
 .game-list-item {
   min-width: 50px;
+  width: 100%;
 }
 
 </style>
