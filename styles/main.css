@@ -1,0 +1,10 @@
+footer {
+  display: flex;
+  justify-content: space-around;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 50px;
+}
+
+#github {
+  background-color: white;
+}
