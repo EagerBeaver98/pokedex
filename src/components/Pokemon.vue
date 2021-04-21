@@ -3,7 +3,7 @@
   <h1>Pok&eacute;dex</h1>
   <div class="body">
   <div class="pokemon">
-    <Sprite v-if="$data.gotPokemon" :img="$data.pokemon.sprites.front_default" />
+    <Sprite v-if="$data.gotPokemon" :img="getSprite()" />
     <div id="name">
       {{$data.pokemon.name}}
     </div>
@@ -65,9 +65,22 @@ export default {
     gameDescription() {
       return this.pokemon.species.flavor_text_entries.find(x => x.version.name === this.currentGame && x.language.name === 'en').flavor_text
     },
+    getSprite() {
+      for (let generation in this.pokemon.sprites.versions) {
+        if (generation === this.getGenerationObject().name) {
+          for (let game in this.pokemon.sprites.versions[generation]) {
+            if (game.search(this.currentGame) >= 0) {
+              return this.pokemon.sprites.versions[generation][game].front_default
+            } 
+          }
+        }
+      }
+    },
+    getGenerationObject() {
+      return this.pokemon.generations.find(x => x.id === this.currentGen);
+    },
   },
   updated() {
-    console.log(this.$data)
   },
 };
 </script>
