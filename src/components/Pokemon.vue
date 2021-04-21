@@ -63,7 +63,7 @@ export default {
       }
     },
     gameDescription() {
-      return this.pokemon.species.flavor_text_entries.find(x => x.version.name === this.currentGame).flavor_text
+      return this.pokemon.species.flavor_text_entries.find(x => x.version.name === this.currentGame && x.language.name === 'en').flavor_text
     },
   },
   updated() {
